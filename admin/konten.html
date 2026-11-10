@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konten Halaman | Kenes Souvenir Kantor</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+  <div id="adminSidebarContainer"></div>
+
+  <div class="admin-main-wrap">
+    <div id="adminTopbarContainer"></div>
+
+    <main class="admin-content-area">
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+          <span class="eyebrow">Manajemen Salinan Teks</span>
+          <h1 class="h2 mb-0">Konten Halaman Website</h1>
+          <p class="text-muted-custom small mb-0">Ubah teks hero, profil beranda, visi misi tentang, dan page banner tanpa menyentuh kode.</p>
+        </div>
+      </div>
+
+      <!-- Nav Tabs Konten -->
+      <ul class="nav nav-tabs mb-4" id="kontenTabs" role="tablist" style="border-color:var(--line);">
+        <li class="nav-item">
+          <button class="nav-link active fw-bold" id="beranda-tab" data-bs-toggle="tab" data-bs-target="#tabBeranda" type="button" role="tab" style="color:var(--ink); border-radius:var(--radius);">Halaman Beranda</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fw-bold" id="tentang-tab" data-bs-toggle="tab" data-bs-target="#tabTentang" type="button" role="tab" style="color:var(--ink); border-radius:var(--radius);">Halaman Tentang</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link fw-bold" id="banner-tab" data-bs-toggle="tab" data-bs-target="#tabBanner" type="button" role="tab" style="color:var(--ink); border-radius:var(--radius);">Page Banners</button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="kontenTabsContent">
+        <!-- TAB 1: BERANDA -->
+        <div class="tab-pane fade show active" id="tabBeranda" role="tabpanel">
+          <form id="formKontenBeranda">
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="h5 mb-0">Hero Section (Bagian Paling Atas)</h3>
+              </div>
+              <div class="admin-card-body">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="custom-label" for="heroJudulInput">Judul Utama Hero (H1)</label>
+                    <input type="text" id="heroJudulInput" class="custom-input" required>
+                  </div>
+                  <div class="col-12">
+                    <label class="custom-label" for="heroSubjudulInput">Subjudul / Deskripsi Hero</label>
+                    <textarea id="heroSubjudulInput" class="custom-input" style="min-height:80px;" required></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label class="custom-label" for="heroGambarUrlInput">URL Gambar Hero (Rasio 4:5)</label>
+                    <input type="url" id="heroGambarUrlInput" class="custom-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="h5 mb-0">Tentang Singkat di Beranda</h3>
+              </div>
+              <div class="admin-card-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="custom-label" for="homeAboutJudulInput">Judul Section</label>
+                    <input type="text" id="homeAboutJudulInput" class="custom-input">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="custom-label" for="homeAboutGambarInput">URL Gambar Profil Singkat</label>
+                    <input type="url" id="homeAboutGambarInput" class="custom-input">
+                  </div>
+                  <div class="col-12">
+                    <label class="custom-label" for="homeAboutTeksInput">Paragraf Ringkas Tentang Usaha</label>
+                    <textarea id="homeAboutTeksInput" class="custom-input" style="min-height:100px;"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="h5 mb-0">CTA Strip Beranda (Orangered)</h3>
+              </div>
+              <div class="admin-card-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="custom-label" for="homeCtaJudulInput">Judul Ajakan CTA</label>
+                    <input type="text" id="homeCtaJudulInput" class="custom-input">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="custom-label" for="homeCtaTeksInput">Teks Keterangan CTA</label>
+                    <input type="text" id="homeCtaTeksInput" class="custom-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-end mb-5">
+              <button type="submit" class="btn-primary-custom">Simpan Perubahan Beranda</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB 2: TENTANG -->
+        <div class="tab-pane fade" id="tabTentang" role="tabpanel">
+          <form id="formKontenTentang">
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="h5 mb-0">Profil & Visi Misi Halaman Tentang</h3>
+              </div>
+              <div class="admin-card-body">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="custom-label" for="aboutGambarInput">URL Foto Profil Perusahaan</label>
+                    <input type="url" id="aboutGambarInput" class="custom-input">
+                  </div>
+                  <div class="col-12">
+                    <label class="custom-label" for="aboutProfilInput">Teks Profil Usaha</label>
+                    <textarea id="aboutProfilInput" class="custom-input" style="min-height:120px;"></textarea>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="custom-label" for="aboutVisiInput">Pernyataan Visi</label>
+                    <textarea id="aboutVisiInput" class="custom-input" style="min-height:90px;"></textarea>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="custom-label" for="aboutMisiInput">Poin-poin Misi (Pisahkan per baris)</label>
+                    <textarea id="aboutMisiInput" class="custom-input" style="min-height:90px;"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-end mb-5">
+              <button type="submit" class="btn-primary-custom">Simpan Perubahan Halaman Tentang</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB 3: BANNERS -->
+        <div class="tab-pane fade" id="tabBanner" role="tabpanel">
+          <form id="formKontenBanners">
+            <div class="admin-card">
+              <div class="admin-card-header">
+                <h3 class="h5 mb-0">Judul & Deskripsi Page Banner</h3>
+              </div>
+              <div class="admin-card-body">
+                <div class="row g-4">
+                  <!-- Produk -->
+                  <div class="col-md-6">
+                    <div class="p-3 bg-cream-deep border" style="border-radius:var(--radius); border-color:var(--line) !important;">
+                      <h4 class="h6 fw-bold mb-2 text-uppercase">Banner Halaman Produk</h4>
+                      <div class="mb-2">
+                        <label class="custom-label" for="bannerProdukJudul">Judul Banner</label>
+                        <input type="text" id="bannerProdukJudul" class="custom-input">
+                      </div>
+                      <div>
+                        <label class="custom-label" for="bannerProdukDesc">Deskripsi Ringkas</label>
+                        <input type="text" id="bannerProdukDesc" class="custom-input">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Galeri -->
+                  <div class="col-md-6">
+                    <div class="p-3 bg-cream-deep border" style="border-radius:var(--radius); border-color:var(--line) !important;">
+                      <h4 class="h6 fw-bold mb-2 text-uppercase">Banner Halaman Galeri</h4>
+                      <div class="mb-2">
+                        <label class="custom-label" for="bannerGaleriJudul">Judul Banner</label>
+                        <input type="text" id="bannerGaleriJudul" class="custom-input">
+                      </div>
+                      <div>
+                        <label class="custom-label" for="bannerGaleriDesc">Deskripsi Ringkas</label>
+                        <input type="text" id="bannerGaleriDesc" class="custom-input">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Blog -->
+                  <div class="col-md-6">
+                    <div class="p-3 bg-cream-deep border" style="border-radius:var(--radius); border-color:var(--line) !important;">
+                      <h4 class="h6 fw-bold mb-2 text-uppercase">Banner Halaman Blog</h4>
+                      <div class="mb-2">
+                        <label class="custom-label" for="bannerBlogJudul">Judul Banner</label>
+                        <input type="text" id="bannerBlogJudul" class="custom-input">
+                      </div>
+                      <div>
+                        <label class="custom-label" for="bannerBlogDesc">Deskripsi Ringkas</label>
+                        <input type="text" id="bannerBlogDesc" class="custom-input">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Kontak -->
+                  <div class="col-md-6">
+                    <div class="p-3 bg-cream-deep border" style="border-radius:var(--radius); border-color:var(--line) !important;">
+                      <h4 class="h6 fw-bold mb-2 text-uppercase">Banner Halaman Kontak</h4>
+                      <div class="mb-2">
+                        <label class="custom-label" for="bannerKontakJudul">Judul Banner</label>
+                        <input type="text" id="bannerKontakJudul" class="custom-input">
+                      </div>
+                      <div>
+                        <label class="custom-label" for="bannerKontakDesc">Deskripsi Ringkas</label>
+                        <input type="text" id="bannerKontakDesc" class="custom-input">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-end mb-5">
+              <button type="submit" class="btn-primary-custom">Simpan Page Banners</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/auth-guard.js"></script>
+  <script type="module">
+    import { initAdminLayout } from './js/admin-layout.js';
+    initAdminLayout('konten');
+  </script>
+  <script type="module" src="js/konten.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /admin/*
+
+Allow: /
+Allow: /tentang.html
+Allow: /produk.html
+Allow: /produk-detail.html*
+Allow: /galeri.html
+Allow: /blog.html
+Allow: /blog-detail.html*
+Allow: /kontak.html
+
+Sitemap: https://kenessouvenir.com/sitemap.xml
+

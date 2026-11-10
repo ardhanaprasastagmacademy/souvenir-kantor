@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+    // Izinkan publik membaca katalog, portofolio, artikel, dan pengaturan
+    // Serta izinkan penulisan untuk pengelolaan data panel admin
+    match /products/{id} {
+      allow read, write: if true;
+    }
+
+    match /categories/{id} {
+      allow read, write: if true;
+    }
+
+    match /gallery/{id} {
+      allow read, write: if true;
+    }
+
+    match /testimonials/{id} {
+      allow read, write: if true;
+    }
+
+    match /faqs/{id} {
+      allow read, write: if true;
+    }
+
+    match /posts/{id} {
+      allow read, write: if true;
+    }
+
+    match /settings/{doc} {
+      allow read, write: if true;
+    }
+
+    // Formulir pesan masuk kontak
+    match /messages/{id} {
+      allow read, write: if true;
+    }
+
+    // Admin collection
+    match /admins/{uid} {
+      allow read, write: if true;
+    }
+  }
+}
+

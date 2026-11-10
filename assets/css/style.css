@@ -1,0 +1,1292 @@
+/* ==========================================================================
+   STYLE.CSS — Website Souvenir Kantor
+   Acuannya: DESIGN.md & PRD.md
+   Palet: Orangered (#FF4500, #D93A00), Cream (#FBF4E8), Ink (#231B16)
+   Tipografi: Bodoni Moda (Judul Display) & Hanken Grotesk (Isi & UI)
+   Prinsip: Elegan, Editorial, Hairline 1px, Tanpa AI-slop
+   ========================================================================== */
+
+/* 1. GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,600&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+/* 2. DESIGN TOKENS */
+:root {
+  --orangered:      #FF4500; /* Warna tanda murni: garis aksen, angka besar serif */
+  --orangered-600:  #D93A00; /* UI Orangered: latar navbar, tombol utama, CTA, kontras 4.6:1 */
+  --orangered-700:  #B83000; /* Hover / active tombol utama */
+
+  --cream:          #FBF4E8; /* Latar halaman utama */
+  --cream-soft:     #FEFAF3; /* Kartu, panel, input */
+  --cream-deep:     #F2E7D3; /* Section selang-seling, page banner, placeholder */
+
+  --ink:            #231B16; /* Teks utama, section testimoni, footer */
+  --muted:          #6E6258; /* Teks sekunder, deskripsi, breadcrumb */
+  --line:           #E4D6BE; /* Hairline 1px, border kartu/input */
+  --on-orangered:   #FFFBF3; /* Teks di atas latar orangered */
+
+  --radius:         2px;
+  --radius-lg:      4px;
+  --ease:           cubic-bezier(.22, .61, .36, 1);
+
+  /* Bootstrap 5.3 Overrides */
+  --bs-body-bg:            var(--cream);
+  --bs-body-color:         var(--ink);
+  --bs-body-font-family:   'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --bs-border-color:       var(--line);
+  --bs-link-color:         var(--orangered-600);
+  --bs-link-hover-color:   var(--orangered-700);
+  --bs-primary:            var(--orangered-600);
+}
+
+/* 3. RESET & BASE */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* 4. TIPOGRAFI EDITORIAL */
+h1, h2, h3, .font-serif, .display-heading {
+  font-family: 'Bodoni Moda', 'Didot', 'Georgia', serif;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+h1, .h1 {
+  font-size: clamp(2.35rem, 5.2vw, 4.25rem);
+  line-height: 1.08;
+}
+
+h2, .h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.85rem);
+  line-height: 1.15;
+}
+
+h3, .h3 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--orangered-600);
+  margin-bottom: 0.75rem;
+}
+
+.eyebrow-light {
+  color: var(--on-orangered);
+  opacity: 0.85;
+}
+
+.text-muted-custom {
+  color: var(--muted);
+}
+
+.text-lead {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 38rem;
+}
+
+.serif-number {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--orangered);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* Penanda list: garis 12px orangered */
+.list-dash {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.list-dash li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+.list-dash li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75rem;
+  width: 12px;
+  height: 1.5px;
+  background-color: var(--orangered);
+}
+
+/* Hairlines */
+.hairline-top {
+  border-top: 1px solid var(--line);
+}
+.hairline-bottom {
+  border-bottom: 1px solid var(--line);
+}
+.hairline-ink {
+  border-top: 1px solid var(--ink);
+}
+
+/* 5. NAVBAR DESKTOP & MOBILE */
+.site-header {
+  background: var(--orangered-600);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  transition: padding 0.25s var(--ease), height 0.25s var(--ease);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.navbar-inner {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: height 0.25s var(--ease);
+}
+
+.site-header.scrolled .navbar-inner {
+  height: 64px;
+}
+
+/* Brand / Wordmark */
+.brand-wordmark {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--on-orangered);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-wordmark:hover {
+  color: var(--on-orangered);
+}
+.brand-tagline {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+  display: block;
+  font-weight: 400;
+}
+
+/* Nav links - Anti shift bold effect */
+.nav-link-x {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--on-orangered);
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 0.85rem;
+  transition: font-weight 0.2s var(--ease), opacity 0.2s;
+  position: relative;
+}
+.nav-link-x::after {
+  content: attr(data-text);
+  font-weight: 700;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  display: block;
+}
+.nav-link-x:hover,
+.nav-link-x.active {
+  font-weight: 700;
+  color: var(--on-orangered);
+}
+.nav-link-x:focus-visible {
+  outline: 2px solid var(--on-orangered);
+  outline-offset: 4px;
+}
+
+/* Tombol CTA di Navbar */
+.btn-nav-cta {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: none;
+  transition: background-color 0.2s var(--ease), transform 0.2s;
+}
+.btn-nav-cta:hover {
+  background: var(--cream-deep);
+  color: var(--ink);
+}
+
+/* Mobile Toggle - 2 lines asymmetrical */
+.mobile-toggle-btn {
+  background: transparent;
+  border: none;
+  padding: 10px 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  width: 44px;
+  height: 44px;
+  justify-content: center;
+}
+.mobile-toggle-btn span {
+  display: block;
+  height: 2px;
+  background-color: var(--on-orangered);
+  transition: width 0.25s var(--ease), transform 0.25s;
+}
+.mobile-toggle-btn .line-1 {
+  width: 26px;
+}
+.mobile-toggle-btn .line-2 {
+  width: 18px;
+}
+.mobile-toggle-btn:focus-visible {
+  outline: 2px solid var(--on-orangered);
+  outline-offset: 2px;
+}
+
+/* Mobile Sidebar (Offcanvas) */
+.sidebar-menu {
+  background: var(--orangered-600);
+  color: var(--on-orangered);
+  width: min(86vw, 340px);
+  border-left: none;
+  z-index: 1050;
+}
+.sidebar-menu .offcanvas-header {
+  border-bottom: 1px solid rgba(255, 251, 243, 0.25);
+  padding: 20px 24px;
+}
+.sidebar-menu .btn-close-custom {
+  background: transparent;
+  border: none;
+  color: var(--on-orangered);
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-list li {
+  border-bottom: 1px solid rgba(255, 251, 243, 0.2);
+}
+.sidebar-list .nav-link-x {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.65rem;
+  padding: 14px 0;
+  align-items: flex-start;
+  color: var(--on-orangered);
+}
+.sidebar-list .nav-link-x:hover,
+.sidebar-list .nav-link-x.active {
+  font-weight: 700;
+}
+.sidebar-kontak {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 251, 243, 0.25);
+}
+.sidebar-kontak p {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+/* 6. TOMBOL (BUTTONS) */
+.btn-primary-custom {
+  background-color: var(--orangered-600);
+  color: var(--on-orangered);
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  border: 1px solid var(--orangered-600);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s var(--ease), border-color 0.2s;
+  cursor: pointer;
+}
+.btn-primary-custom:hover,
+.btn-primary-custom:focus {
+  background-color: var(--orangered-700);
+  border-color: var(--orangered-700);
+  color: var(--on-orangered);
+}
+
+.btn-secondary-custom {
+  background-color: transparent;
+  color: var(--ink);
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  padding: 13px 26px;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s var(--ease);
+  cursor: pointer;
+}
+.btn-secondary-custom:hover {
+  background-color: var(--ink);
+  color: var(--cream);
+}
+
+.btn-cream {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  border: 1px solid var(--cream);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s var(--ease);
+}
+.btn-cream:hover {
+  background-color: var(--cream-deep);
+  color: var(--ink);
+}
+
+.btn-text-custom {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-image: linear-gradient(var(--orangered), var(--orangered));
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.3s var(--ease), color 0.2s;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(228, 214, 190, 0.8);
+}
+.btn-text-custom:hover {
+  background-size: 100% 1px;
+  color: var(--orangered-600);
+}
+
+/* 7. PAGE BANNER & BREADCRUMB */
+.page-banner {
+  background-color: var(--cream-deep);
+  padding: 72px 0 54px;
+  border-bottom: 1px solid var(--line);
+}
+.breadcrumb-custom {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-bottom: 1rem;
+  list-style: none;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+}
+.breadcrumb-custom li {
+  display: inline-flex;
+  align-items: center;
+}
+.breadcrumb-custom li + li::before {
+  content: "/";
+  padding: 0 0.5rem;
+  color: var(--line);
+  font-weight: 300;
+}
+.breadcrumb-custom a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumb-custom a:hover {
+  color: var(--ink);
+}
+.breadcrumb-custom .active {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* 8. SECTIONS & LAYOUT */
+.section-padding {
+  padding: 96px 0;
+}
+@media (max-width: 991px) {
+  .section-padding {
+    padding: 72px 0;
+  }
+}
+@media (max-width: 575px) {
+  .section-padding {
+    padding: 56px 0;
+  }
+}
+
+.bg-cream {
+  background-color: var(--cream);
+}
+.bg-cream-soft {
+  background-color: var(--cream-soft);
+}
+.bg-cream-deep {
+  background-color: var(--cream-deep);
+}
+.bg-ink {
+  background-color: var(--ink);
+  color: var(--cream);
+}
+.bg-orangered {
+  background-color: var(--orangered-600);
+  color: var(--on-orangered);
+}
+
+/* 9. HERO SECTION */
+.hero-section {
+  padding: 80px 0 96px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-image-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background-color: var(--cream-deep);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.hero-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-badge-note {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--cream-soft);
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  padding: 12px 18px;
+  font-size: 0.8125rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* 10. SECTION "KENAPA PILIH KAMI" & "KEUNGGULAN" (ANTI-SLOP: TANPA IKON ROKET/BOHLAM) */
+.benefit-item {
+  border-top: 1px solid var(--ink);
+  padding-top: 1.75rem;
+  height: 100%;
+}
+.benefit-item .serif-number {
+  margin-bottom: 0.5rem;
+}
+.benefit-item h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+.benefit-item p {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+/* 11. KARTU PRODUK (PRODUCT CARD) */
+.product-card {
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.25s var(--ease);
+}
+.product-card:hover {
+  border-color: var(--orangered-600);
+}
+.product-card-img-wrap {
+  aspect-ratio: 4 / 5;
+  background-color: var(--cream-deep);
+  overflow: hidden;
+  position: relative;
+}
+.product-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.product-card:hover .product-card-img-wrap img {
+  transform: scale(1.03);
+}
+.product-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+}
+.product-card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.product-card-category {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--orangered-600);
+  margin-bottom: 0.35rem;
+}
+.product-card-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.product-card-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.product-card-price {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+.product-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+.product-card-actions a {
+  font-size: 0.8125rem;
+}
+
+/* Category Filter Tabs (Text tabs with 2px underline) */
+.category-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.5rem;
+}
+.filter-tab-btn {
+  background: transparent;
+  border: none;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 6px 0;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.filter-tab-btn:hover {
+  color: var(--ink);
+}
+.filter-tab-btn.active {
+  color: var(--ink);
+  font-weight: 700;
+}
+.filter-tab-btn.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -9px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--orangered);
+}
+
+/* 12. GALERI & LIGHTBOX */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.gallery-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-color: var(--cream-deep);
+  overflow: hidden;
+  cursor: pointer;
+}
+.gallery-item.tall {
+  aspect-ratio: 4 / 5;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+.gallery-caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(35, 27, 22, 0.85);
+  color: var(--cream);
+  padding: 16px 20px;
+  transform: translateY(100%);
+  transition: transform 0.3s var(--ease);
+}
+.gallery-item:hover .gallery-caption-overlay {
+  transform: translateY(0);
+}
+.gallery-caption-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.gallery-caption-category {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--orangered);
+}
+
+/* Custom Lightbox */
+.custom-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(35, 27, 22, 0.95);
+  z-index: 1060;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.custom-lightbox.active {
+  display: flex;
+}
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.lightbox-caption {
+  color: var(--cream);
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.15rem;
+  margin-top: 14px;
+  text-align: center;
+}
+.lightbox-btn {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  cursor: pointer;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox-close {
+  top: 16px;
+  right: 24px;
+}
+.lightbox-prev {
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lightbox-next {
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 13. TESTIMONI (DARK SECTION) */
+.testimonial-section {
+  background-color: var(--ink);
+  color: var(--cream);
+  padding: 100px 0;
+}
+.testimonial-accent-line {
+  width: 48px;
+  height: 2px;
+  background-color: var(--orangered);
+  margin-bottom: 2rem;
+}
+.testimonial-quote {
+  font-family: 'Bodoni Moda', serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.75vw, 2.15rem);
+  line-height: 1.35;
+  color: var(--cream);
+  margin-bottom: 2rem;
+  max-width: 52rem;
+}
+.testimonial-author-name {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cream);
+  margin-bottom: 2px;
+}
+.testimonial-author-company {
+  font-size: 0.875rem;
+  color: rgba(251, 244, 232, 0.7);
+}
+.testimonial-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.testimonial-counter {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.125rem;
+  color: rgba(251, 244, 232, 0.7);
+}
+.btn-nav-arrow {
+  background: transparent;
+  border: 1px solid rgba(251, 244, 232, 0.3);
+  color: var(--cream);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-nav-arrow:hover {
+  border-color: var(--orangered);
+  color: var(--orangered);
+}
+
+/* 14. FAQ ACCORDION (+ and - glyph) */
+.faq-accordion {
+  border-top: 1px solid var(--line);
+}
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 1.5rem 0;
+}
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.25rem;
+  color: var(--ink);
+  cursor: pointer;
+  gap: 1rem;
+}
+.faq-question:hover {
+  color: var(--orangered-600);
+}
+.faq-toggle-icon {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--orangered);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+.faq-answer {
+  display: none;
+  padding-top: 1rem;
+  color: var(--muted);
+  max-width: 42rem;
+  line-height: 1.65;
+}
+.faq-item.active .faq-answer {
+  display: block;
+}
+.faq-item.active .faq-toggle-icon {
+  content: "−";
+}
+
+/* 15. CTA STRIP */
+.cta-strip {
+  background-color: var(--orangered-600);
+  color: var(--on-orangered);
+  padding: 88px 0;
+}
+.cta-strip h2 {
+  color: var(--on-orangered);
+  margin-bottom: 1rem;
+}
+.cta-strip p {
+  color: var(--on-orangered);
+  opacity: 0.9;
+  font-size: 1.125rem;
+  max-width: 36rem;
+  margin-bottom: 0;
+}
+
+/* 16. BLOG / ARTIKEL */
+.blog-card {
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+}
+.blog-card:hover {
+  border-color: var(--orangered-600);
+}
+.blog-card-img-wrap {
+  aspect-ratio: 16 / 10;
+  background-color: var(--cream-deep);
+  overflow: hidden;
+}
+.blog-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.blog-card:hover .blog-card-img-wrap img {
+  transform: scale(1.03);
+}
+.blog-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.blog-card-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+.blog-card-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  text-decoration: none;
+}
+.blog-card-title:hover {
+  color: var(--orangered-600);
+}
+.blog-card-summary {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Detail Blog Content */
+.article-header {
+  padding: 48px 0 32px;
+}
+.article-thumbnail {
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background-color: var(--cream-deep);
+  margin-bottom: 2.5rem;
+}
+.article-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.article-body {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--ink);
+}
+.article-body h2 {
+  font-size: 1.85rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.article-body h3 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.article-body p {
+  margin-bottom: 1.5rem;
+}
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.9375rem;
+}
+.article-body th, .article-body td {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+}
+.article-body th {
+  background-color: var(--cream-deep);
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 600;
+}
+.article-body blockquote {
+  border-left: 2px solid var(--orangered);
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: var(--muted);
+  margin: 2rem 0;
+}
+
+/* 17. FORM KONTAK */
+.custom-input {
+  background-color: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  height: 52px;
+  padding: 12px 16px;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  width: 100%;
+  transition: border-color 0.2s, outline 0.2s;
+}
+textarea.custom-input {
+  height: auto;
+  min-height: 140px;
+}
+.custom-input:focus {
+  border-color: var(--ink);
+  outline: 2px solid var(--orangered);
+  outline-offset: 2px;
+  background-color: #ffffff;
+}
+.custom-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+.form-error-msg {
+  color: var(--orangered-700);
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+.has-error .form-error-msg {
+  display: block;
+}
+.has-error .custom-input {
+  border-color: var(--orangered-700);
+}
+
+/* 18. FOOTER */
+.site-footer {
+  background-color: var(--ink);
+  color: var(--cream);
+  padding: 80px 0 32px;
+  border-top: 1px solid rgba(228, 214, 190, 0.15);
+}
+.footer-title {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--orangered);
+  margin-bottom: 1.25rem;
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 0.65rem;
+}
+.footer-links a {
+  color: rgba(251, 244, 232, 0.8);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--cream);
+}
+.footer-bottom {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(251, 244, 232, 0.12);
+  font-size: 0.8125rem;
+  color: rgba(251, 244, 232, 0.6);
+}
+
+/* 19. WHATSAPP POPUP & BACK TO TOP (TIDAK SALING MENUTUPI) */
+/* Floating WA Button */
+.wa-float-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  background-color: var(--ink);
+  color: var(--cream);
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1040;
+  transition: transform 0.2s var(--ease), background-color 0.2s;
+}
+.wa-float-btn:hover {
+  background-color: #25D366; /* Standard WhatsApp green on hover */
+  color: #ffffff;
+  transform: scale(1.05);
+}
+.wa-float-btn:focus-visible {
+  outline: 2px solid var(--orangered);
+  outline-offset: 3px;
+}
+
+/* WA Popup Box */
+.wa-popup-box {
+  position: fixed;
+  right: 20px;
+  bottom: 86px;
+  width: 320px;
+  background: var(--cream-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(35, 27, 22, 0.15);
+  z-index: 1041;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUpFade 0.25s var(--ease);
+}
+.wa-popup-box.active {
+  display: flex;
+}
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.wa-popup-header {
+  background-color: var(--orangered-600);
+  color: var(--on-orangered);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wa-popup-header-title {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.wa-popup-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--on-orangered);
+  padding: 4px;
+  cursor: pointer;
+}
+.wa-popup-body {
+  padding: 18px;
+}
+.wa-popup-text {
+  font-size: 0.875rem;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.wa-popup-action {
+  width: 100%;
+}
+
+/* Back To Top Button */
+.back-to-top-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 88px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--cream);
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1039;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, background-color 0.2s, color 0.2s;
+}
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.back-to-top-btn:hover {
+  background-color: var(--orangered-600);
+  border-color: var(--orangered-600);
+  color: var(--on-orangered);
+}
+.back-to-top-btn:focus-visible {
+  outline: 2px solid var(--orangered);
+  outline-offset: 3px;
+}
+
+/* 20. SKELETON PLACEHOLDER */
+.skeleton {
+  background: linear-gradient(90deg, var(--cream-deep) 25%, #EBE0CC 50%, var(--cream-deep) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.skeleton-card {
+  height: 380px;
+  margin-bottom: 1.5rem;
+}
+
+/* 21. PRODUCT DETAIL MODAL & DEDICATED SPEC TABLE */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  margin-bottom: 1.5rem;
+}
+.spec-table th, .spec-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+}
+.spec-table th {
+  width: 38%;
+  color: var(--muted);
+  font-weight: 500;
+  background-color: var(--cream-deep);
+}
+.spec-table td {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* 22. ACCESSIBILITY & PREFERS-REDUCED-MOTION */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

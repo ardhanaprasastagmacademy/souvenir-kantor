@@ -1,0 +1,18 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAdmin() {
+      return request.auth != null;
+    }
+
+    // Gambar upload publik: dapat dibaca siapapun, hanya ditulis oleh admin
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin()
+                   && request.resource.size < 2 * 1024 * 1024
+                   && request.resource.contentType.matches('image/(jpeg|png|webp|svg\\+xml)');
+      allow delete: if isAdmin();
+    }
+  }
+}
+
