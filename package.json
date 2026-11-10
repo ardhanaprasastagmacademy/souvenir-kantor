@@ -2,9 +2,8 @@
   "name": "souvenir-kantor",
   "version": "1.0.0",
   "description": "Website Souvenir Kantor & Merchandise Perusahaan",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "dev": "node server.js",
     "serve": "node server.js",
     "deploy": "firebase deploy"
   },

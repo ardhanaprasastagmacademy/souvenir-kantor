@@ -21,8 +21,8 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
   const reqUrl = req.url.split('?')[0];
-  let safePath = path.normalize(decodeURIComponent(reqUrl)).replace(/^(\.\.[\/\\])+/, '');
-  let filePath = path.join(__dirname, safePath === '/' ? 'index.html' : safePath);
+  let safePath = decodeURIComponent(reqUrl).replace(/^(\.\.[\/\\])+/, '').replace(/^[\\\/]+/, '');
+  let filePath = path.join(__dirname, safePath === '' ? 'index.html' : safePath);
 
   // Jika folder, cari index.html
   if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
@@ -57,14 +57,18 @@ const server = http.createServer((req, res) => {
   stream.pipe(res);
 });
 
-server.listen(PORT, () => {
-  console.log(`\n======================================================`);
-  console.log(` KENES SOUVENIR KANTOR — Web Server Aktif`);
-  console.log(`======================================================`);
-  console.log(` > Website Publik: http://localhost:${PORT}`);
-  console.log(` > Katalog Produk: http://localhost:${PORT}/produk.html`);
-  console.log(` > Panel Admin:    http://localhost:${PORT}/admin/login.html`);
-  console.log(`   (Default Login: admin@kenessouvenir.com / admin123)`);
-  console.log(`======================================================\n`);
-});
+if (require.main === module) {
+  server.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(` KENES SOUVENIR KANTOR — Web Server Aktif`);
+    console.log(`======================================================`);
+    console.log(` > Website Publik: http://localhost:${PORT}`);
+    console.log(` > Katalog Produk: http://localhost:${PORT}/produk.html`);
+    console.log(` > Panel Admin:    http://localhost:${PORT}/admin/login.html`);
+    console.log(`   (Default Login: admin@kenessouvenir.com / admin123)`);
+    console.log(`======================================================\n`);
+  });
+}
+
+module.exports = server;
 
