@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Website Souvenir Kantor & Merchandise Perusahaan",
   "scripts": {
+    "build": "echo Static build ready",
     "dev": "node scripts/local-server.js",
     "serve": "node scripts/local-server.js",
     "deploy": "firebase deploy"
