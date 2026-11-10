@@ -19,10 +19,12 @@ const MIME_TYPES = {
   '.xml': 'application/xml; charset=utf-8'
 };
 
+const ROOT_DIR = path.join(__dirname, '..');
+
 const server = http.createServer((req, res) => {
   const reqUrl = req.url.split('?')[0];
   let safePath = decodeURIComponent(reqUrl).replace(/^(\.\.[\/\\])+/, '').replace(/^[\\\/]+/, '');
-  let filePath = path.join(__dirname, safePath === '' ? 'index.html' : safePath);
+  let filePath = path.join(ROOT_DIR, safePath === '' ? 'index.html' : safePath);
 
   // Jika folder, cari index.html
   if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
@@ -35,7 +37,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
-    const notFoundPath = path.join(__dirname, '404.html');
+    const notFoundPath = path.join(ROOT_DIR, '404.html');
     res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
     if (fs.existsSync(notFoundPath)) {
       res.end(fs.readFileSync(notFoundPath));

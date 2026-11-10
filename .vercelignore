@@ -1,0 +1,10 @@
+scripts/
+.git/
+.firebaserc
+firestore.rules
+storage.rules
+firebase.json
+PANDUAN-KONEKSI-FIREBASE.md
+PRD.md
+DESIGN.md
+SEO-STRATEGY.md

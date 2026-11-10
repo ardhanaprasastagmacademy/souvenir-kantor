@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Website Souvenir Kantor & Merchandise Perusahaan",
   "scripts": {
-    "dev": "node local-server.js",
-    "serve": "node local-server.js",
+    "dev": "node scripts/local-server.js",
+    "serve": "node scripts/local-server.js",
     "deploy": "firebase deploy"
   },
   "keywords": [
