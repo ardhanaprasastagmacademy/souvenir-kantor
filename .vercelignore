@@ -1,6 +1,4 @@
 scripts/
-package.json
-package-lock.json
 .git/
 .firebaserc
 firestore.rules

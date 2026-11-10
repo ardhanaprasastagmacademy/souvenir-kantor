@@ -1,21 +1,11 @@
 {
   "name": "souvenir-kantor",
   "version": "1.0.0",
+  "private": true,
   "description": "Website Souvenir Kantor & Merchandise Perusahaan",
   "scripts": {
-    "build": "echo Static build ready",
     "dev": "node scripts/local-server.js",
-    "serve": "node scripts/local-server.js",
-    "deploy": "firebase deploy"
-  },
-  "keywords": [
-    "souvenir-kantor",
-    "merchandise",
-    "corporate-gifts",
-    "firebase",
-    "bootstrap5"
-  ],
-  "author": "Kenes Souvenir",
-  "license": "ISC"
+    "serve": "node scripts/local-server.js"
+  }
 }
 
